@@ -1,0 +1,56 @@
+# ==============================================================================
+# ENVORA EMBEDDED SYSTEM GITIGNORE
+# ==============================================================================
+
+# Build Output Directories
+.pio/
+build/
+bin/
+out/
+dist/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+
+# Environment & Credentials Protection
+.env
+.env.local
+.env.*.local
+*.pem
+*.crt
+*.key
+include/credentials.h
+src/credentials.h
+firmware/include/credentials.h
+firmware/src/credentials.h
+
+# PlatformIO & ESP-IDF Tooling Caches
+.vscode/compile_commands.json
+.vscode/.cmaketools.json
+.clang-d/
+.cquery/
+.ccls-cache/
+
+# IDE & Editor Files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+*.swp
+*~
+*.bak
+
+# OS & System Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Temporary test data & python caches
+__pycache__/
+*.pyc
+data/raw/*.tmp
