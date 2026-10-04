@@ -18,7 +18,7 @@ To evolve Envora into an industry-ready product, testing spans hardware verifica
 | :--- | :--- | :--- | :--- | :--- |
 | **Sensor Accuracy** | Validate temperature & humidity tolerances | $\pm 2^\circ\text{C}$ Temp, $\pm 5\%$ RH | Comparison against calibrated reference meter | Planned |
 | **Sensor Reliability** | Detect read timeouts, corrupt checksums | Sensor fault count over $10,000$ reads | Continuous polling stress loop | Planned |
-| **LCD Operation** | Confirm character rendering & I2C stability | Zero missing characters, I2C bus lockup recovery | Dynamic screen refresh test | Planned |
+| **LCD Operation** | Confirm character rendering & I2C stability | Zero missing characters, I2C bus lockup recovery | Dynamic screen refresh test ([lcd-i2c-test.md](file:///C:/Users/aarya/.gemini/antigravity/scratch/Envora/docs/testing/lcd-i2c-test.md)) | **Passed (v0.3)** |
 | **Wi-Fi Reliability** | Verify reconnect capability & RSSI resilience | Auto-reconnect within $< 10\text{s}$ of AP drop | AP power-cycling test | Planned |
 | **Time Synchronization** | Validate NTP synchronization & drift | Time drift $< 1\text{s}$ per 24h offline | NTP update & internal RTC drift tracking | Planned |
 | **Location Detection** | Verify IP/Location API response parsing | Valid lat/long and outdoor weather payload | Mock and live API response tests | Planned |

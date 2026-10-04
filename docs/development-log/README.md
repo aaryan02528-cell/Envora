@@ -58,6 +58,8 @@ Immediate follow-up tasks for the next development iteration.
 | Date | Log Entry | Milestone | Summary |
 | :--- | :--- | :--- | :--- |
 | 2026-08-15 | `2026-08-15-workspace-setup.md` | v0.1 | Initial repository scaffolding, directory structure, and documentation framework creation. |
+| 2026-10-03 | `2026-10-03.md` | v0.2 | ESP32-C3 hardware bench verification and DHT11 single-wire sensor validation. |
+| 2026-10-04 | `2026-10-04.md` | v0.3 | 16x2 I2C LCD display integration, address scanning (0x27), and combined DHT11+LCD test. |
 
 > [!IMPORTANT]
 > Development logs must reflect actual physical bench work. History is never fabricated or retroactively guessed.
