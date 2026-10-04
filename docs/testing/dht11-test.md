@@ -54,4 +54,6 @@ Verify physical connection, electrical communication, and data acquisition betwe
 ## Conclusion
 Single-wire digital communication between the ESP32-C3 microcontroller and the DHT11 sensor is fully functional and validated.
 
-*Evidence Image*: `images/testing/dht11-esp32-test-success.png` *(Needs to be added manually)*
+## Evidence
+![ESP32-C3 Firmware Upload & DHT11 Test](../../images/testing/esp32-c3-firmware-upload-test.jpg)
+![DHT11 Breadboard Prototype Hookup](../../images/prototype/dht11-breadboard-prototype.jpg)

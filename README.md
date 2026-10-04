@@ -20,6 +20,8 @@ The long-term goal of Envora is to serve as a robust, networked, self-contained 
 - **[COMPLETE] Display Integration (v0.3)**: 16x2 I2C character LCD interface integration and combined DHT11 + LCD hardware validation (SDA: GPIO 4, SCL: GPIO 5, Address: 0x27).
 - **[NEXT] Standalone Power (v0.4)**: 5V SMPS power supply integration.
 
+![Envora DHT11 + LCD Combined Prototype Validation](images/testing/dht11-lcd-integration-success.jpg)
+
 ## 4. Planned Features
 - [x] **Local Temperature & Humidity Sensing (Validation Phase)**: Interfacing DHT11 environmental sensor via single-wire digital protocol (GPIO 3).
 - [x] **Visual Telemetry Display**: Real-time environmental metrics on a 16x2 character LCD via I2C interface (GPIO 4 / GPIO 5).

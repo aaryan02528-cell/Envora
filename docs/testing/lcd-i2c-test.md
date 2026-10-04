@@ -64,7 +64,9 @@ Dedicated validation test firmware [`dht11_lcd_test.ino`](file:///C:/Users/aarya
 - **Status**: **PASS**
 - **ESP32-C3 + DHT11 + LCD/I²C integration**: **PASS**
 
-*Evidence Image*: `images/testing/dht11-lcd-integration-success.png` *(Needs to be added manually)*
+## Evidence
+![DHT11 and LCD Integration Success](../../images/testing/dht11-lcd-integration-success.jpg)
+![DHT11 and LCD Workstation Test Setup](../../images/testing/dht11-lcd-workstation-test.jpg)
 
 ---
 
