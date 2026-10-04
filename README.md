@@ -13,13 +13,14 @@ The long-term goal of Envora is to serve as a robust, networked, self-contained 
 
 ## 3. Current Features
 > [!NOTE]
-> Envora is currently in the initial repository setup and hardware prototyping stage.
+> Envora is currently in the active hardware prototyping stage.
 
-- **[In Progress] Core Workspace Setup**: Modular software, hardware, and engineering documentation repository structure.
-- **[Prototype Phase] Hardware Platform Setup**: Breadboard platform utilizing ESP32-C3 Mini microcontroller.
+- **[COMPLETE] Core Workspace Setup (v0.1)**: Modular software, hardware, and engineering documentation repository structure.
+- **[IN PROGRESS] Sensor Integration (v0.2)**: Physical validation of ESP32-C3 microcontroller and DHT11 temperature/humidity sensor over GPIO 3.
+- **[NEXT] Display Integration (v0.3)**: 16x2 I2C character LCD interface integration.
 
 ## 4. Planned Features
-- [ ] **Local Temperature & Humidity Sensing**: Interfacing DHT11 environmental sensor via single-wire digital protocol.
+- [x] **Local Temperature & Humidity Sensing (Validation Phase)**: Interfacing DHT11 environmental sensor via single-wire digital protocol (GPIO 3).
 - [ ] **Visual Telemetry Display**: Real-time environmental metrics on a 16x2 character LCD via I2C interface.
 - [ ] **Wi-Fi Connectivity**: Network stack initialization for NTP time sync and telemetry delivery.
 - [ ] **NTP Clock & Date Sync**: Accurate local time keeping synchronized over network connection.
@@ -31,15 +32,16 @@ The long-term goal of Envora is to serve as a robust, networked, self-contained 
 ## 5. Hardware
 | Component | Model / Spec | Status | Notes |
 | :--- | :--- | :--- | :--- |
-| **Microcontroller** | ESP32-C3 Mini Dev Board | Selected | RISC-V core, 2.4 GHz Wi-Fi, Bluetooth 5 (LE) |
-| **Environmental Sensor** | DHT11 Module | Selected | Temperature & Humidity sensing |
-| **Display** | 16x2 Character LCD | Selected | Driven via PCF8574 I2C backpack |
+| **Microcontroller** | ESP32-C3 Mini Dev Board | Verified | RISC-V core, board & serial validated |
+| **Environmental Sensor** | DHT11 Module | Verified | Connected to GPIO 3, $26.5\text{--}26.9^\circ\text{C}$, $75\%$ RH |
+| **Display** | 16x2 Character LCD | Selected | PCF8574 I2C backpack (Next step) |
 | **Power Supply** | 5V SMPS | Selected | External regulated power source |
 | **Prototyping Medium** | Solderless Breadboard & Jumpers | Active | Initial validation platform |
 
 ## 6. Software/Firmware
 - **Architecture**: Modular firmware split into driver layers (Sensor, Display, Network), application logic, and system management.
-- **Target Framework**: PlatformIO / ESP-IDF / C++ framework (To be finalized in decision logs).
+- **Validation Firmware**: [`firmware/src/dht11_test/dht11_test.ino`](file:///C:/Users/aarya/.gemini/antigravity/scratch/Envora/firmware/src/dht11_test/dht11_test.ino)
+- **Target Framework**: PlatformIO / ESP-IDF / Arduino C++ framework.
 
 ## 7. System Architecture
 ```
@@ -52,11 +54,11 @@ The long-term goal of Envora is to serve as a robust, networked, self-contained 
 +-------------------------------------------------------------+
 |                    ESP32-C3 Microcontroller                 |
 |  +-------------------+  +-------------------+  +----------+ |
-|  | Single-Wire GPIO  |  |   I2C Bus (SDA/SCL|  | Wi-Fi    | |
+|  | Single-Wire GPIO3 |  |   I2C Bus (SDA/SCL|  | Wi-Fi    | |
 |  +---------+---------+  +---------+---------+  +----+-----+ |
 +------------|----------------------|-----------------|-------+
              |                      |                 |
-             v                      v                 v
+             v (Verified)           v (Next)          v (Planned)
      +---------------+      +---------------+   +------------+
      | DHT11 Sensor  |      | 16x2 I2C LCD  |   | NTP / Cloud|
      +---------------+      +---------------+   +------------+
@@ -70,8 +72,8 @@ $$\text{Understand} \longrightarrow \text{Experiment} \longrightarrow \text{Meas
 Every hardware decision, code module, and test outcome is documented transparently in this repository to build a complete engineering record.
 
 ## 9. Project Status
-- **Current Stage**: Prototype / Documentation & Setup Phase (v0.1-dev)
-- **Active Focus**: Workspace architecture, git setup, and basic hardware bench test configuration.
+- **Current Stage**: Sensor Integration Phase (v0.2) — DHT11 Hardware Validation COMPLETE
+- **Active Milestone**: Proceeding to 16x2 I2C LCD Display Integration (v0.3)
 
 ## 10. Repository Structure
 ```
@@ -81,8 +83,11 @@ Envora/
 ├── .gitignore                # Git ignore rules for embedded dev
 ├── .env.example              # Sensitive configuration template
 ├── firmware/                 # Embedded C/C++ firmware code and headers
+│   └── src/dht11_test/       # Dedicated DHT11 validation test code
 ├── hardware/                 # Schematics, pinouts, BOM, PCB files
 ├── docs/                     # Engineering logs, ADRs, learnings, tests
+│   ├── development-log/      # Dated logs (2026-10-03 hardware test)
+│   └── testing/              # Hardware test protocols (dht11-test.md)
 ├── images/                   # Prototype and hardware images
 ├── data/                     # Raw and processed test telemetry data
 ├── tools/                    # Flashing, debugging, and helper scripts
@@ -90,11 +95,11 @@ Envora/
 ```
 
 ## 11. Testing & Validation
-Testing strategies for Envora will cover:
-1. Hardware interface validation (I2C scanning, GPIO timing).
-2. Sensor accuracy & drift comparison.
-3. Network connection resilience & reconnect testing.
-4. Long-duration stability tests (24h+ continuous monitoring).
+Testing strategies for Envora cover:
+1. **[PASSED] MCU & Serial Communication**: ESP32-C3 UART serial output verification.
+2. **[PASSED] Sensor Data Pipeline**: Single-wire DHT11 signal reading on GPIO 3 ([docs/testing/dht11-test.md](file:///C:/Users/aarya/.gemini/antigravity/scratch/Envora/docs/testing/dht11-test.md)).
+3. **[NEXT] I2C Display Operations**: 16x2 character LCD initialization & rendering.
+4. **[PLANNED] Network Resilience & NTP Sync**: Wi-Fi reconnect and time tracking.
 
 Refer to [docs/testing/README.md](file:///C:/Users/aarya/.gemini/antigravity/scratch/Envora/docs/testing/README.md) for test protocols.
 
@@ -105,9 +110,9 @@ Refer to [docs/testing/README.md](file:///C:/Users/aarya/.gemini/antigravity/scr
 - MQTT / HTTPS cloud dashboard integration.
 
 ## 13. Development Roadmap
-- [ ] **v0.1 — Initial Prototype**: Directory structure, hardware setup, basic pin mapping.
-- [ ] **v0.2 — Sensor Integration**: Reliable DHT11 reading with data validation.
-- [ ] **v0.3 — Display Integration**: 16x2 I2C LCD UI implementation.
+- [x] **v0.1 — Initial Prototype**: Directory structure, repository scaffolding, setup docs.
+- [ ] **v0.2 — Sensor Integration**: [In Progress] DHT11 hardware validation passed (`dht11_test.ino`).
+- [ ] **v0.3 — Display Integration**: [Next] 16x2 I2C LCD UI implementation.
 - [ ] **v0.4 — Standalone Power**: 5V SMPS integration and power consumption baseline.
 - [ ] **v0.5 — Time/Date**: NTP time sync over Wi-Fi.
 - [ ] **v0.6 — Connectivity & Location**: Outdoor environmental comparison & location features.
